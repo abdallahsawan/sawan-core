@@ -28,8 +28,8 @@ class SawanCoreServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         /*if ($this->app->runningInConsole()) {
             $this->commands([
                 MigrateLaraCoreModels::class,
