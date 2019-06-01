@@ -11,8 +11,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "sawan\\core\\": "src/",
-			"Sawan\\Core\\": "packages/sawan/core/src"
+			"Sawan\\Core\\": "/src"
         }
     },
 	"keywords": [
