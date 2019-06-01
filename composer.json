@@ -1,6 +1,7 @@
 {
     "name": "sawan/core",
     "description": "This is the first version for my laravel core",
+    "license": "MIT",
     "authors": [
         {
             "name": "AbdallahSawan",
