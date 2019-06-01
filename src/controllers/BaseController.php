@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    private $modelsNamespacePrefix = 'Lara\\Core\\Models\\';
+    protected $modelsNamespacePrefix = 'App\\Models\\';
 
     private function getModelClass() {
         return app($this->getModelClassName());

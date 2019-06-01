@@ -4,7 +4,6 @@ namespace Sawan\Core;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use Lara\Core\Commands\MigrateLaraCoreModels;
 
 class SawanCoreServiceProvider extends ServiceProvider
 {
@@ -16,8 +15,8 @@ class SawanCoreServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->make('Lara\Core\Controllers\BaseController');
-        $this->app->make('Lara\Core\Controllers\AttachmentController');
+        $this->app->make('Sawan\Core\Controllers\BaseController');
+        $this->app->make('Sawan\Core\Controllers\AttachmentController');
     }
 
     /**
@@ -28,8 +27,8 @@ class SawanCoreServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        $this->loadRoutesFrom(__DIR__ . '/routes/routes.php');
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         /*if ($this->app->runningInConsole()) {
             $this->commands([
                 MigrateLaraCoreModels::class,

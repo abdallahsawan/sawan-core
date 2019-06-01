@@ -2,6 +2,7 @@
 
 namespace Sawan\Core\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 

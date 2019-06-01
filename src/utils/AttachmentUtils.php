@@ -6,8 +6,8 @@ namespace Sawan\Core\Utils;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
-use Lara\Core\Models\Attachment;
-use Lara\Core\Models\BaseModel;
+use Sawan\Core\Models\Attachment;
+use Sawan\Core\Models\BaseModel;
 
 
 class AttachmentUtils

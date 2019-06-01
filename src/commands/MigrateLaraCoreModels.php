@@ -1,9 +1,8 @@
 <?php
 
 namespace Sawan\Core\Commands;
-use Illuminate\Support\Facades\Artisan;
+
 use Illuminate\Console\Command;
-use Sawan\Core\SawanCoreServiceProvider;
 
 class MigrateLaraCoreModels extends Command
 {

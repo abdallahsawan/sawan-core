@@ -1,4 +1,5 @@
 <?php
-
-Route::post('upload', 'Lara\Core\Controllers\AttachmentController@upload');
-Route::get('download/{id}', 'Lara\Core\Controllers\AttachmentController@download');
+Route::prefix('api')->group(function () {
+    Route::post('upload', 'Sawan\Core\Controllers\AttachmentController@upload');
+    Route::get('download/{id}', 'Sawan\Core\Controllers\AttachmentController@download');
+});
