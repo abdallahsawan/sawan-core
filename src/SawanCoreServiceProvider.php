@@ -34,6 +34,7 @@ class SawanCoreServiceProvider extends ServiceProvider
             __DIR__ . '/config' => config_path(),
             __DIR__ . '/resources' => base_path('resources'),
         ]);
+        $this->loadViewsFrom(__DIR__ . '/resources/views');
         /*if ($this->app->runningInConsole()) {
             $this->commands([
                 MigrateLaraCoreModels::class,
