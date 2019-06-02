@@ -17,6 +17,7 @@ class SawanCoreServiceProvider extends ServiceProvider
     {
         $this->app->make('Sawan\Core\Controllers\BaseController');
         $this->app->make('Sawan\Core\Controllers\AttachmentController');
+        $this->app->make('Sawan\Core\Controllers\PageController');
     }
 
     /**
@@ -26,9 +27,13 @@ class SawanCoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->publishes([
+            __DIR__ . '/assets' => base_path('public'),
+            __DIR__ . '/config' => config_path(),
+            __DIR__ . '/resources' => base_path('resources'),
+        ]);
         /*if ($this->app->runningInConsole()) {
             $this->commands([
                 MigrateLaraCoreModels::class,

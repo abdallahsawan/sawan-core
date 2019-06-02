@@ -5,6 +5,7 @@ namespace Sawan\Core\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Sawan\Core\Models\Attachment;
 use Validator;
@@ -21,7 +22,38 @@ class AttachmentController extends Controller
         if ($validator->fails()) {
             return "Bad request";
         }
-        $file = $request->file('file');
+        $attachment = $this->uploadOneFile($request->file('file'), $request->tag);
+        if($attachment != null) {
+            return $attachment;
+        } else {
+            return "Bad Request";
+        }
+    }
+
+    public function uploadAll(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'files' => 'required',
+            'tag' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return "Bad request";
+        }
+        $files = $request->file('files');
+        $count = 0;
+        $attachments = new Collection();
+        foreach ($files as $file) {
+            $count++;
+            $attachment = $this->uploadOneFile($file, $request->tag);
+            if($attachment != null) {
+                $attachments->push($attachment);
+            } else {
+                return "error while saving file " . $count;
+            }
+        }
+        return $attachments;
+    }
+
+    private function uploadOneFile($file, $tag) {
         $fullFileName = $file->getClientOriginalName();
         $fileName = pathinfo($fullFileName, PATHINFO_FILENAME);
         $fileExtension = pathinfo($fullFileName, PATHINFO_EXTENSION);
@@ -39,14 +71,13 @@ class AttachmentController extends Controller
             $attachment->mime_type = $file->getClientMimeType();
             $attachment->size = $file->getSize();
             $attachment->path = $path;
-            $attachment->tag = $request->tag;
+            $attachment->tag = $tag;
             $attachment->save();
             return $attachment;
         } else {
-            return "Unknown error while saving file";
+            return null;
         }
     }
-
     public function download($id) {
         $attachment = Attachment::find($id);
         $headers = array(
