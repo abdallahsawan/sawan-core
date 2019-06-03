@@ -30,8 +30,6 @@ class SawanCoreServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->publishes([
-            __DIR__ . '/assets' => base_path('public'),
-            __DIR__ . '/config' => config_path(),
             __DIR__ . '/resources' => base_path('resources'),
         ]);
         /*if ($this->app->runningInConsole()) {
